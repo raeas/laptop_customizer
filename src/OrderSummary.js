@@ -1,10 +1,30 @@
 import React, { Component } from 'react';
 import "./OrderSummary.css";
+import SummaryTotal from './SummaryTotal'
+import SummaryOption from './SummaryOption'
 
 class OrderSummary extends Component {
+    static defaultProps = {
+        selected: []
+    };
     render() {
+        const summary = Object.keys(this.props.selected).map((feature, idx) => {
+            const featureHash = feature + '-' + idx;
+            return <SummaryOption
+                        key={featureHash}
+                        feature={feature}
+                        idx={idx}
+                        selectedOption={this.props.selected[feature]}
+                    />
+        })
         return (
-            <p>This is the cart.</p>
+            <section className="main__summary">
+                <h2>Your cart</h2>
+                {summary}
+                <SummaryTotal
+                    selected={this.props.selected}
+                />
+            </section>
         )
     }
 }
