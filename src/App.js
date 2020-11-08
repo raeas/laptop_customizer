@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Header';
 import OrderForm from './OrderForm'
-import FeatureName from './FeatureName'
 import OrderSummary from './OrderSummary'
 
 // This object will allow us to
@@ -34,6 +33,14 @@ class App extends Component {
     }
   };
 
+  updateFeature = (feature, newValue) => {
+    const selected = Object.assign({}, this.state.selected);
+    selected[feature] = newValue;
+    this.setState({
+      selected
+    });
+  };
+
   render() { 
     console.log(this.props)
     return (
@@ -41,11 +48,13 @@ class App extends Component {
             <Header /> 
             <main> 
                 <OrderForm
-                    fs={this.props.features} 
+                    features={this.props.features} 
                     selected={this.state.selected} 
-                    //updateFeature={this.updateFeature} 
+                    updateFeature={this.updateFeature} 
                 /> 
-                <OrderSummary state={this.state.selected} /> 
+                <OrderSummary 
+                  state={this.state.selected} 
+                /> 
             </main> 
         </div> 
     ); 
