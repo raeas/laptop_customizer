@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Feature from './FeatureName';
 import "./OrderForm.css";
 import FeatureName from './FeatureName'
 import FeatureItem from './FeatureItem'

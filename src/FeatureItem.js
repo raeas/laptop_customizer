@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./FeatureItem.css";
 import slugify from 'slugify';
-import FEATURES from './STORE';
+
 
 
 class FeatureItem extends Component {
