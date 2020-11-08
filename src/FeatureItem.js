@@ -2,20 +2,41 @@ import React, { Component } from 'react';
 import "./FeatureItem.css";
 import slugify from 'slugify';
 
-
+const USCurrencyFormat = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  });
 
 class FeatureItem extends Component {
+    static defaultProps = {
+        itemHash: '',
+        feature: '',
+        item: {
+            name: '',
+            cost: 0
+        },
+        selectedFeatureName: '',
+        updateFeature: () => {return}
+    };
+
     render() {
-        const computerFeatures = this.props.features
-        console.log(this.props)
-            //.map(features, key) => 
         return (
             <div className="feature__item">
-                <input type="radio" id="name">
+                <input 
+                    type="radio" 
+                    id={this.props.itemHash}
+                    className="feature__option"
+                    name={slugify(this.props.feature)}
+                    checked={this.props.item.name === this.props.selectedFeatureName}
+                    onChange={() => this.props.updateFeature(this.props.feature, this.props.item)}    
+                >
                 </input>
+                <label htmlFor={this.props.itemHash} className="feature__label">
+                    {this.props.item.name} ({USCurrencyFormat.format(this.props.item.cost)})
+                </label>
             </div>
     
-        )
+        );
     }
 }
 
