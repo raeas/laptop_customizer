@@ -8,6 +8,7 @@ class OrderSummary extends Component {
         selected: []
     };
     render() {
+        console.log(this.props)
         const summary = Object.keys(this.props.selected).map((feature, idx) => {
             const featureHash = feature + '-' + idx;
             return <SummaryOption
